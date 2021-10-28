@@ -23,7 +23,9 @@ components:
             image: 'registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:1c4faa2dae80c373f606f542ca841f991d1dfa27979006500aca85e3c2999d2d'
             resources:
               limits:
-              memory: 512Mi
+                memory: 512Mi
+              requests:
+                nvidia.com/gpu: 1 # requesting 1 GPU
             volumeMounts:
               - name: venv
                 mountPath: /home/jboss/.venv
