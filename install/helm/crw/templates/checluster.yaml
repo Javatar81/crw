@@ -1,0 +1,49 @@
+apiVersion: org.eclipse.che/v1
+kind: CheCluster
+metadata:
+  name: codeready-workspaces
+spec:
+  auth:
+    identityProviderURL: ''
+    identityProviderRealm: ''
+    oAuthSecret: ''
+    identityProviderPassword: ''
+    oAuthClientName: ''
+    initialOpenShiftOAuthUser: true
+    identityProviderClientId: ''
+    identityProviderAdminUserName: ''
+    externalIdentityProvider: false
+  database:
+    chePostgresUser: ''
+    externalDb: false
+    chePostgresHostName: ''
+    chePostgresPassword: ''
+    chePostgresDb: ''
+    chePostgresPort: ''
+  metrics:
+    enable: true
+  server:
+    customCheProperties: 
+    {{- range $key, $val := .Values.cheCluster.customCheProperties }}
+      {{ $key }}: {{ $val }}
+    {{- end }}     
+    proxyURL: ''
+    cheClusterRoles: ''
+    proxyPassword: ''
+    nonProxyHosts: ''
+    proxyPort: ''
+    tlsSupport: true
+    allowUserDefinedWorkspaceNamespaces: false
+    serverTrustStoreConfigMapName: ''
+    proxyUser: ''
+    cheWorkspaceClusterRole: ''
+    workspaceNamespaceDefault: <username>-codeready
+    serverExposureStrategy: ''
+    gitSelfSignedCert: false
+    cheFlavor: codeready
+  storage:
+    postgresPVCStorageClassName: ''
+    preCreateSubPaths: true
+    pvcClaimSize: 10Gi
+    pvcStrategy: common
+    workspacePVCStorageClassName: ''
